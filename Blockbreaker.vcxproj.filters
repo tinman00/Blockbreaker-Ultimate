@@ -69,6 +69,9 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="General.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h">
@@ -120,6 +123,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="TestScene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="General.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

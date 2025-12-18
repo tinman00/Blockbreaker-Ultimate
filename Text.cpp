@@ -22,6 +22,6 @@ Text::Text(sf::Vector2u pos, sf::String s, sf::Color c, sf::String fontpath, int
 void Text::Render() {
 	sf::Text text(font, str, characterSize);
 	text.setFillColor(color);
-	text.setPosition(sf::Vector2f(left, top));
+	text.setPosition(sf::Vector2f(left, bottom));
 	Engine::window->draw(text);
 }
