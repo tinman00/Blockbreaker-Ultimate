@@ -15,7 +15,5 @@ public:
 
     virtual bool CollideWith(const BoxCollider* other) const;
     virtual bool CollideWith(const CircleCollider* other) const;
-
-    virtual void Render();
 };
 

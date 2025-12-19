@@ -12,7 +12,5 @@ public:
 
     bool CollideWith(const BoxCollider* other) const override;
     bool CollideWith(const CircleCollider* other) const override;
-
-    void Render() override;
 };
 

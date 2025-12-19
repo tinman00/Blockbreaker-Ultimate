@@ -47,10 +47,3 @@ bool BoxCollider::CollideWith(const CircleCollider* other) const
     }
     return false;
 }
-
-void BoxCollider::Render()
-{
-    sf::RectangleShape shape(size);
-    shape.setPosition(position);
-    Engine::window->draw(shape);
-}
