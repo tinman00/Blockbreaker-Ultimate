@@ -69,6 +69,8 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="General.cpp">
+      <Filter>源文件</Filter>
     <ClCompile Include="TestScene2.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -125,6 +127,8 @@
     <ClInclude Include="TestScene.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="General.h">
+      <Filter>头文件</Filter>
     <ClInclude Include="TestScene2.h">
       <Filter>头文件</Filter>
     </ClInclude>
