@@ -1,9 +1,13 @@
 #include "Text.h"
 #include "Engine.h"
+#include <cstring>
+#include <cstdio>
 
-Text::Text(sf::Vector2u pos, sf::String s, sf::Color c, sf::String fontpath, int cs)
+Text::Text(sf::Vector2u pos, const char* s, sf::Color c, sf::String fontpath, int cs)
 {
-	sf::Vector2u siz = sf::Vector2u(s.getSize() * cs, cs);
+	str = sf::String::fromUtf8(s, s + strlen(s));
+	sf::Vector2u siz = sf::Vector2u(str.getSize() * cs, cs);
+
 	thisid = ++id;
 	width = siz.x;
 	height = siz.y;
@@ -11,7 +15,6 @@ Text::Text(sf::Vector2u pos, sf::String s, sf::Color c, sf::String fontpath, int
 	right = left + siz.x;
 	bottom = pos.y - siz.y / 2;
 	top = bottom + siz.y;
-	str = s;
 	color = c;
 	characterSize = cs;
 	if (!font.openFromFile(std::filesystem::path(fontpath))) {

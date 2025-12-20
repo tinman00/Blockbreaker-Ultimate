@@ -12,7 +12,7 @@ public:
     sf::Color color;
     sf::Font font;
     int characterSize;
-    Text(sf::Vector2u pos, sf::String s, sf::Color c, sf::String fontpath, int cs);
+    Text(sf::Vector2u pos, const char* s, sf::Color c, sf::String fontpath, int cs);
 	void Render();
 };
 

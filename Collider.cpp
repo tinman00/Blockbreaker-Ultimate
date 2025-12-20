@@ -17,8 +17,3 @@ bool Collider::CollideWith(const CircleCollider* other) const
     // 默认实现：由派生类覆盖
     return false;
 }
-
-void Collider::Render()
-{
-    // 默认实现：基类不渲染
-}

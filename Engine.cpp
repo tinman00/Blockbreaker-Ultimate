@@ -70,19 +70,19 @@ namespace Engine
                 {
                     if (mouse->button == sf::Mouse::Button::Left) {
                         std::vector<UI*> uis;
-                        int minLayer = INT32_MAX;
+                        int topLayer = INT32_MIN;
                         for (auto obj : objects)
                         {
                             UI* ui = dynamic_cast<UI*>(obj);
                             if (ui != nullptr && ui->Enclose(mouse->position.x, mouse->position.y))
                             {
                                 uis.push_back(ui);
-                                minLayer = ui->layer < minLayer ? ui->layer : minLayer;
+                                topLayer = ui->layer > topLayer ? ui->layer : topLayer;
                             }
                         }
                         for (auto ui : uis)
                         {
-                            if (ui->layer == minLayer)
+                            if (ui->layer == topLayer)
                             {
                                 ui->OnClick();
                             }
