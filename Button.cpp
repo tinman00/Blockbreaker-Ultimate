@@ -3,12 +3,9 @@
 #include "BoxCollider.h"
 #include <iostream>
 
-int Button::id = 0;
-
-Button::Button(sf::Vector2u pos, sf::Vector2u siz)
+Button::Button(sf::Vector2u pos, sf::Vector2u siz, int _layer, std::function<void()> onClick)
 {
-	thisid = ++id;
-	layer = 1;
+	layer = _layer;
 	width = siz.x;
 	height = siz.y;
 	left = pos.x - siz.x / 2;
@@ -16,11 +13,8 @@ Button::Button(sf::Vector2u pos, sf::Vector2u siz)
 	bottom = pos.y - siz.y / 2;
 	top = bottom + siz.y;
 	collider = new BoxCollider({ 1.f * left, 1.f * bottom }, {1.f * width, 1.f * height});
-	//’‚¿Ôpos «’˝÷–£¨µ´ «boxcolliderµƒposŒ“…Ëµƒ «left bottom
-}
-
-void Button::OnClick() {
-	std::cout << "Click id: " << thisid << std::endl;
+	//ÔøΩÔøΩÔøΩÔøΩposÔøΩÔøΩÔøΩÔøΩÔøΩ–£ÔøΩÔøΩÔøΩÔøΩÔøΩboxcolliderÔøΩÔøΩposÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩleft bottom
+	OnClick = onClick;
 }
 
 void Button::Render() {

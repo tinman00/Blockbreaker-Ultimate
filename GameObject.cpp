@@ -3,6 +3,8 @@
 #include "Engine.h"
 #include "SFML/Graphics.hpp"
 
+int GameObject::id = 0;
+
 void GameObject::Start()
 {
 

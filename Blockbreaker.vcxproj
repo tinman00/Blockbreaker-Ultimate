@@ -156,6 +156,8 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="StatsManager.cpp" />
     <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="TestScene2.cpp" />
+    <ClCompile Include="TestScene3.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
@@ -176,6 +178,8 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="StatsManager.h" />
     <ClInclude Include="TestScene.h" />
+    <ClInclude Include="TestScene2.h" />
+    <ClInclude Include="TestScene3.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
