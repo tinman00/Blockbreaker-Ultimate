@@ -5,7 +5,7 @@
 
 int Button::id = 0;
 
-Button::Button(sf::Vector2u pos, sf::Vector2u siz)
+Button::Button(sf::Vector2f pos, sf::Vector2f siz)
 {
 	thisid = ++id;
 	layer = 1;

@@ -7,8 +7,8 @@ class Button :
     public UI
 {
 public:
-    Button(sf::Vector2u pos, sf::Vector2u siz);
+    Button(sf::Vector2f pos, sf::Vector2f siz);
     void OnClick();
     void Render();
-};
+}; 
 
