@@ -19,5 +19,5 @@ TestScene3::TestScene3()
 			SceneManager::LoadScene(new TestScene());
 		}
 	));
-	objects.push_back(new Text({ 750, 300 }, L"好了，出去", sf::Color(127, 127, 255), "Deng.ttf", 32));
+	objects.push_back(new Text({ 750, 300 }, u8"好了，出去", sf::Color(127, 127, 255), "Deng.ttf", 32));
 }

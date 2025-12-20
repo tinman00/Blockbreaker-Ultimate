@@ -12,7 +12,7 @@ TestScene::TestScene()
 	std::cout << "Loading test scene 1" << std::endl;
 	objects.push_back(new Button(
 		{ 400, 250 },
-		{ 300, 200 },
+		{ 500, 200 },
 		2,
 		[]() {
 			std::cout << "Clicking button 1" << std::endl;
@@ -29,5 +29,5 @@ TestScene::TestScene()
 		}
 	));
 	std::cout << objects[0]->collider->CollideWith(objects[1]->collider) << std::endl;
-	objects.push_back(new Text({ 300,300 }, L"ÃˆÃ‹Â£Â¬Â¹Ã½Ã€Â´", sf::Color(255, 127, 63), "Deng.ttf", 32));
+	objects.push_back(new Text({ 400,250 }, u8"ÈË£¬¹ıÀ´", sf::Color(255, 127, 63), "Deng.ttf", 32));
 }

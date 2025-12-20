@@ -20,5 +20,5 @@ TestScene2::TestScene2()
 			SceneManager::LoadScene(new TestScene3());
 		}
 	));
-	objects.push_back(new Text({ 750, 300 }, L"这个给你", sf::Color(127, 127, 255), "Deng.ttf", 32));
+	objects.push_back(new Text({ 750, 300 }, u8"这个给你", sf::Color(127, 127, 255), "Deng.ttf", 32));
 }
