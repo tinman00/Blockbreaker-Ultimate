@@ -1,136 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CircleCollider.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="EngineTime.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="General.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Racket.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="StatsManager.cpp" />
+    <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="TestScene2.cpp" />
+    <ClCompile Include="TestScene3.cpp" />
+    <ClCompile Include="Text.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>资源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Ball.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineTime.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Racket.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="StatsManager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="BoxCollider.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CircleCollider.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="TestScene.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="General.cpp">
-      <Filter>源文件</Filter>
-    <ClCompile Include="TestScene2.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Ball.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxCollider.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleCollider.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Racket.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="StatsManager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineTime.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="TestScene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="General.h">
-      <Filter>头文件</Filter>
-    <ClInclude Include="TestScene2.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CircleCollider.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="EngineTime.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="General.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Racket.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="StatsManager.h" />
+    <ClInclude Include="TestScene.h" />
+    <ClInclude Include="TestScene2.h" />
+    <ClInclude Include="TestScene3.h" />
+    <ClInclude Include="Text.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="Settings.h" />
   </ItemGroup>
 </Project>

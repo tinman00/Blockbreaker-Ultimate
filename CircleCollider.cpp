@@ -2,17 +2,32 @@
 #include "General.h"
 #include "BoxCollider.h"
 
-bool CircleCollider::CollideWith(const Collider* other) const
+bool CircleCollider::IsCollideWith(const Collider* other) const
 {
-    return other->CollideWith(this);
+    return other->IsCollideWith(this);
 }
 
-bool CircleCollider::CollideWith(const BoxCollider* other) const
+bool CircleCollider::IsCollideWith(const BoxCollider* other) const
 {
-    return other->CollideWith(this);
+    return other->IsCollideWith(this);
 }
 
-bool CircleCollider::CollideWith(const CircleCollider* other) const
+bool CircleCollider::IsCollideWith(const CircleCollider* other) const
 {
     return DistanceSquared(this->center, other->center) <= (this->radius + other->radius) * (this->radius + other->radius);
+}
+
+sf::Vector2f CircleCollider::CollideDirection(const Collider* other) const
+{
+    return -other->CollideDirection(this);
+}
+
+sf::Vector2f CircleCollider::CollideDirection(const CircleCollider* other) const
+{
+    return Normalize(position - other->position);
+}
+
+sf::Vector2f CircleCollider::CollideDirection(const BoxCollider* other) const
+{
+    return -other->CollideDirection(this);
 }

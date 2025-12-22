@@ -176,6 +176,7 @@
     <ClInclude Include="Racket.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Settings.h" />
     <ClInclude Include="StatsManager.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="TestScene2.h" />
