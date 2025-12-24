@@ -11,9 +11,9 @@ Text::Text(sf::Vector2u pos, const char* s, sf::Color c, sf::String fontpath, in
 	thisid = ++id;
 	width = siz.x;
 	height = siz.y;
-	left = pos.x - siz.x / 2;
+	left = pos.x;
 	right = left + siz.x;
-	bottom = pos.y - siz.y / 2;
+	bottom = pos.y;
 	top = bottom + siz.y;
 	color = c;
 	characterSize = cs;
@@ -27,4 +27,9 @@ void Text::Render() {
 	text.setFillColor(color);
 	text.setPosition(sf::Vector2f(left, bottom));
 	Engine::window->draw(text);
+}
+
+void Text::SetString(std::string str)
+{
+	this->str = sf::String::fromUtf8(str.c_str(), str.c_str() + str.length());
 }

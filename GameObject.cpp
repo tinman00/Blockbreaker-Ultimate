@@ -20,6 +20,12 @@ void GameObject::SetActive(bool state)
 	isActive = state;
 }
 
+void GameObject::SetCollider(Collider* collider)
+{
+	this->collider = collider;
+	collider->owner = this;
+}
+
 void GameObject::Start()
 {
 
@@ -28,6 +34,11 @@ void GameObject::Start()
 void GameObject::UpdatePhysics()
 {
 
+}
+
+void GameObject::SyncPosition()
+{
+	position = collider->position;
 }
 
 void GameObject::UpdateLogic()

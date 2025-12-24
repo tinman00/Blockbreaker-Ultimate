@@ -8,9 +8,9 @@ Button::Button(sf::Vector2u pos, sf::Vector2u siz, int _layer, std::function<voi
 	layer = _layer;
 	width = siz.x;
 	height = siz.y;
-	left = pos.x - siz.x / 2;
+	left = pos.x;
 	right = left + siz.x;
-	bottom = pos.y - siz.y / 2;
+	bottom = pos.y;
 	top = bottom + siz.y;
 	collider = new BoxCollider({ 1.f * left, 1.f * bottom }, {1.f * width, 1.f * height});
 	OnClick = onClick;

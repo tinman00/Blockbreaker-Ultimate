@@ -1,0 +1,10 @@
+#pragma once
+#include <iostream>
+#include <string>
+#include <vector>
+#include "SFML/system.hpp"
+#include "Engine.h"
+#include "SceneManager.h"
+#include "Input.h"
+#include "Collider.h"
+#include "Settings.h"

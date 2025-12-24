@@ -1,12 +1,9 @@
+#include "Base.h"
 #include "TestScene.h"
 #include "TestScene2.h"
 #include "Button.h"
 #include "BoxCollider.h"
 #include "Text.h"
-#include "SceneManager.h"
-#include "Engine.h"
-#include "SFML/System.hpp"
-#include <iostream>
 
 TestScene::TestScene()
 {
@@ -41,5 +38,5 @@ TestScene::TestScene()
 		),
 		txt
 	);
-	std::cout << objects["Button 1"]->collider->CollideWith(objects["Button 1"]->collider) << std::endl;
+	objects["Button 1"]->collider->CollideWith(objects["Button 2"]->collider);
 }

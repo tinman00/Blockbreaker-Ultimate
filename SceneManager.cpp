@@ -8,6 +8,9 @@ namespace SceneManager
 {
 	void LoadScene(Scene* scene)
 	{
+		Engine::window->setSize({ static_cast<unsigned int>(scene->windowWidth),
+			static_cast<unsigned int>(scene->windowHeight) });
+		Engine::resetViewport();
 		auto &objects = Engine::objects;
 		std::vector<std::string> keyToErase;
 		for (auto &[key, obj] : objects) {

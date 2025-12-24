@@ -10,6 +10,13 @@ namespace Input
 		return sf::Keyboard::isKeyPressed(KeyMap[static_cast<int>(bind)]);
 	}
 
+	float GetHorizontal() {
+		float result = 0;
+		result += GetKeydown(Binds::MoveLeft) ? -1 : 0;
+		result += GetKeydown(Binds::MoveRight) ? 1 : 0;
+		return result;
+	}
+
 	void ResetKeyMap()
 	{
 		KeyMap[static_cast<int>(Binds::MoveLeft)] = sf::Keyboard::Key::A;

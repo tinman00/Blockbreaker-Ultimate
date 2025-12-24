@@ -16,8 +16,8 @@ bool BoxCollider::IsCollideWith(const Collider* other) const
 
 bool BoxCollider::IsCollideWith(const BoxCollider* other) const
 {
-    if (position.x >= other->size.x - size.x && position.x <= other->position.x + other->size.x &&
-        position.y >= other->position.y - size.y && position.y <= other->position.y + other->size.y)
+    if (position.x + size.x >= other->position.x && position.x <= other->position.x + other->size.x &&
+        position.y + size.y >= other->position.y && position.y <= other->position.y + other->size.y)
     {
         return true;
     }
@@ -26,7 +26,7 @@ bool BoxCollider::IsCollideWith(const BoxCollider* other) const
 
 bool BoxCollider::IsCollideWith(const CircleCollider* other) const
 {
-    sf::Vector2f center = other->center;
+    sf::Vector2f center = other->position;
     if(center.x >= position.x && center.x <= position.x + size.x &&
        center.y >= position.y - other->radius && center.y <= position.y + size.y + other->radius)
     {
@@ -76,7 +76,7 @@ sf::Vector2f BoxCollider::CollideDirection(const BoxCollider* other) const
 
 sf::Vector2f BoxCollider::CollideDirection(const CircleCollider* other) const
 {
-    sf::Vector2f center = other->center;
+    sf::Vector2f center = other->position;
     if (center.x >= position.x && center.x <= position.x + size.x)
     {
         if (center.y >= position.y + size.y / 2) return { 0, -1 };

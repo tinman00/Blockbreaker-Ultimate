@@ -8,6 +8,7 @@ class GameObject;
 class Scene
 {
 public:
+	float windowWidth = 1920, windowHeight = 1080;
 	std::unordered_map<std::string, GameObject*> objects;
 
 	GameObject* CreateObject(std::string name, GameObject* obj, GameObject* father = nullptr);
