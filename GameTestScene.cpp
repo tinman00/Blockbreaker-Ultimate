@@ -32,7 +32,8 @@ GameTestScene::GameTestScene()
 	for (int i = 0; i < 4; i++) {
 		auto ballGO = CreateObject(
 			std::string("Ball ") + std::to_string(i),
-			new Ball({ static_cast<float>(rand() % 600 + 500), static_cast<float>((int)rand() % 600 + 200) },
+			new Ball({ static_cast<float>(rand() % (static_cast<int>(levelWidth - 2 * BALL_RADIUS)) + BOUNDARY_THICKNESS + BALL_RADIUS),
+				static_cast<float>(rand() % (static_cast<int>(mapHeight * BLOCK_HEIGHT)) + BOUNDARY_THICKNESS + BALL_RADIUS) },
 				BALL_RADIUS, { BOUNDARY_THICKNESS, levelWidth - BOUNDARY_THICKNESS })
 			);
 		auto ball = dynamic_cast<Ball*>(ballGO);
