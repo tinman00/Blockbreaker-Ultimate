@@ -4,7 +4,7 @@
 
 int main()
 {
-    std::cout << "Hello worrld!!!" << std::endl;
+    std::cout << "Hello world!!!" << std::endl;
     Engine::Initialize();
     Engine::Run();
     return 0;
