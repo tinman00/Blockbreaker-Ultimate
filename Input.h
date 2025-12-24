@@ -14,5 +14,6 @@ namespace Input
 	};
 	extern std::unordered_map<int, sf::Keyboard::Key> KeyMap;
 	bool GetKeydown(Binds bind);
+	float GetHorizontal();
 	void ResetKeyMap();
 };
