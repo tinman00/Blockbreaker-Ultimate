@@ -1,6 +1,6 @@
 #pragma once
 #include "UI.h"
-#include "SFML/System.hpp"
+#include "Base.h"
 #include "SFML/graphics.hpp"
 class UI;
 
@@ -14,5 +14,6 @@ public:
     int characterSize;
     Text(sf::Vector2u pos, const char* s, sf::Color c, sf::String fontpath, int cs);
 	void Render();
+	void SetString(std::string str);
 };
 
