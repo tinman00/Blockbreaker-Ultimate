@@ -1,5 +1,6 @@
 #include "Collider.h"
 #include "Settings.h"
+#include <iostream>
 
 bool Collider::IsCollideWith(const Collider* other) const
 {
@@ -32,8 +33,10 @@ sf::Vector2f Collider::CollideDirection(const CircleCollider* other) const
 
 void Collider::MoveBabyStep()
 {
-	if (!isFixed)
-        position += (1.f / MOVES_PER_FRAME) * velocity;
+    if (!isFixed)
+    {
+        position += (1.f / FRAMES_PER_SEC) * velocity;
+    }
 }
 
 void Collider::MoveFullStep()
@@ -46,6 +49,8 @@ void Collider::CollideWith(Collider* other)
 {
     if (!isFixed && IsCollideWith(other))
     {
+        //std::cout << "Collision: \"" << this->owner->name << "\""
+            //<< " with \"" << other->owner->name << "\"" << std::endl;
         sf::Vector2f dir = CollideDirection(other);
 		float dot = velocity.x * dir.x + velocity.y * dir.y;
         if(dot < 0)

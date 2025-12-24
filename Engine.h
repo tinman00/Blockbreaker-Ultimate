@@ -18,6 +18,11 @@ namespace Engine
 	extern std::unordered_map<std::string, GameObject*> objects;
 	extern std::vector<Camera*> cameras;
 
+	extern std::vector<GameObject*> toDelete;
+
+	extern sf::Clock gameClock;
+
+	void resetViewport();
 	void Initialize();
 	void Update();
 	void UpdatePhysics();
@@ -25,6 +30,9 @@ namespace Engine
 	void Render();
 	void Run();
     void Destroy(GameObject* obj);
+	void Delete(GameObject* obj);
+	void ClearBin();
+	int32_t GetTimeMillis();
 
 	GameObject* CreateObject(std::string name, GameObject* obj, GameObject* father = nullptr);
 

@@ -139,41 +139,61 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AirBarrier.cpp" />
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EngineTime.cpp" />
+    <ClCompile Include="ForbbidenZone.cpp" />
+    <ClCompile Include="FragileBlock.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameTestScene.cpp" />
     <ClCompile Include="General.cpp" />
+    <ClCompile Include="HardBlock.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Racket.cpp" />
+    <ClCompile Include="RunningStatsText.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Settings.cpp" />
     <ClCompile Include="StatsManager.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TestScene2.cpp" />
     <ClCompile Include="TestScene3.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UnbreakableBlock.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AirBarrier.h" />
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="Base.h" />
+    <ClInclude Include="BasicUI.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="Block.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="BasicColliders.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineTime.h" />
+    <ClInclude Include="ForbbidenZone.h" />
+    <ClInclude Include="FragileBlock.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameTestScene.h" />
     <ClInclude Include="General.h" />
+    <ClInclude Include="HardBlock.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="BasicObjects.h" />
     <ClInclude Include="Racket.h" />
+    <ClInclude Include="RunningStatsText.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Settings.h" />
@@ -183,6 +203,7 @@
     <ClInclude Include="TestScene3.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="UnbreakableBlock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

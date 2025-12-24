@@ -5,7 +5,6 @@ class BoxCollider :
     public Collider
 {
 public:
-    sf::Vector2f position;
     sf::Vector2f size;
 
     BoxCollider(sf::Vector2f pos, sf::Vector2f size);

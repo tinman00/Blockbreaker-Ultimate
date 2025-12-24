@@ -22,6 +22,15 @@
     <ClCompile Include="TestScene3.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="GameTestScene.cpp" />
+    <ClCompile Include="AirBarrier.cpp" />
+    <ClCompile Include="RunningStatsText.cpp" />
+    <ClCompile Include="Block.cpp" />
+    <ClCompile Include="UnbreakableBlock.cpp" />
+    <ClCompile Include="ForbbidenZone.cpp" />
+    <ClCompile Include="FragileBlock.cpp" />
+    <ClCompile Include="HardBlock.cpp" />
+    <ClCompile Include="Settings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -45,5 +54,17 @@
     <ClInclude Include="Text.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="GameTestScene.h" />
+    <ClInclude Include="AirBarrier.h" />
+    <ClInclude Include="Base.h" />
+    <ClInclude Include="BasicObjects.h" />
+    <ClInclude Include="BasicColliders.h" />
+    <ClInclude Include="RunningStatsText.h" />
+    <ClInclude Include="BasicUI.h" />
+    <ClInclude Include="Block.h" />
+    <ClInclude Include="UnbreakableBlock.h" />
+    <ClInclude Include="ForbbidenZone.h" />
+    <ClInclude Include="FragileBlock.h" />
+    <ClInclude Include="HardBlock.h" />
   </ItemGroup>
 </Project>

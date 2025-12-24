@@ -3,14 +3,17 @@
 #include "SFML/Graphics.hpp"
 #include "GameObject.h"
 
+class GameObject;
 class BoxCollider;
 class CircleCollider;
 class Collider
 {
 public:
+    GameObject* owner;
+
     sf::Vector2f position;
     sf::Vector2f velocity;
-    bool isFixed;
+    bool isFixed = false;
 
     virtual bool IsCollideWith(const Collider* other) const;
 

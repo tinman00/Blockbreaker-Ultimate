@@ -2,6 +2,12 @@
 #include "General.h"
 #include "BoxCollider.h"
 
+CircleCollider::CircleCollider(sf::Vector2f pos, float radius)
+{
+    this->position = pos;
+    this->radius = radius;
+}
+
 bool CircleCollider::IsCollideWith(const Collider* other) const
 {
     return other->IsCollideWith(this);
@@ -14,7 +20,7 @@ bool CircleCollider::IsCollideWith(const BoxCollider* other) const
 
 bool CircleCollider::IsCollideWith(const CircleCollider* other) const
 {
-    return DistanceSquared(this->center, other->center) <= (this->radius + other->radius) * (this->radius + other->radius);
+    return DistanceSquared(this->position, other->position) <= (this->radius + other->radius) * (this->radius + other->radius);
 }
 
 sf::Vector2f CircleCollider::CollideDirection(const Collider* other) const
