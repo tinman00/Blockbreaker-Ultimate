@@ -3,29 +3,26 @@
 #include <cstring>
 #include <cstdio>
 
-Text::Text(sf::Vector2u pos, const char* s, sf::Color c, sf::String fontpath, int cs)
+Text::Text(sf::Vector2f pos, const char* s, sf::Color c, sf::String fontpath, int cs, int layer)
+	: UI(pos, {0, 0}, layer)
 {
-	str = sf::String::fromUtf8(s, s + strlen(s));
-	sf::Vector2u siz = sf::Vector2u(str.getSize() * cs, cs);
-
-	thisid = ++id;
-	width = siz.x;
-	height = siz.y;
-	left = pos.x;
-	right = left + siz.x;
-	bottom = pos.y;
-	top = bottom + siz.y;
-	color = c;
-	characterSize = cs;
 	if (!font.openFromFile(std::filesystem::path(fontpath))) {
 		return;
 	}
+	str = sf::String::fromUtf8(s, s + strlen(s));
+	color = c;
+	characterSize = cs;
+	sf::Text text(font, str, characterSize);
+	sf::FloatRect globalBounds = text.getGlobalBounds();
+	size = globalBounds.size;
+	UpdatePivot();
 }
 
 void Text::Render() {
 	sf::Text text(font, str, characterSize);
+	sf::FloatRect bounds = text.getLocalBounds();
+	text.setPosition(position - bounds.position);
 	text.setFillColor(color);
-	text.setPosition(sf::Vector2f(left, bottom));
 	Engine::window->draw(text);
 }
 

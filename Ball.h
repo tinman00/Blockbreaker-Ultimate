@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "GameManager.h"
 #include "Base.h"
 
 class Ball :
@@ -8,9 +9,13 @@ class Ball :
 public:
     float radius;
     sf::Vector2f boundX;
+    bool isReleased;
+    GameManager* gameManager;
 
     Ball(sf::Vector2f pos, float radius, sf::Vector2f boundX);
+    void Start() override;
     void Render();
 	void UpdateLogic() override;
+    void OnDestroy() override;
 };
 

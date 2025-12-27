@@ -1,6 +1,7 @@
 #include "HardBlock.h"
 #include "Base.h"
 #include "BasicObjects.h"
+#include <cstdlib>
 
 HardBlock::HardBlock(sf::Vector2f pos, sf::Vector2f siz, int hp, sf::Color color)
 	: Block(pos, siz, color)
@@ -11,6 +12,8 @@ HardBlock::HardBlock(sf::Vector2f pos, sf::Vector2f siz, int hp, sf::Color color
 void HardBlock::Start()
 {
 	lastHitTime = Engine::GetTimeMillis() - 999999;
+	auto gameManager = Engine::GetObject<GameManager>("GameManager");
+	gameManager->targetCount++;
 }
 
 void HardBlock::OnCollision(Collider* other)
@@ -75,4 +78,21 @@ void HardBlock::Render() {
 			Engine::window->draw(flashShape2);
 		}
 	}
+}
+
+void HardBlock::OnDestroy()
+{
+	auto gameManager = Engine::GetObject<GameManager>("GameManager");
+	gameManager->targetCount--;
+
+	if (rand() % 100 < SKILL_DROP_CHANCE_PERCENT) {
+		Skill::Type type = Skill::Type::Split;
+		auto skill = new Skill(
+			position + size / 2.f - sf::Vector2f(SKILL_SIZE / 2.f, SKILL_SIZE / 2.f),
+			sf::Vector2f(SKILL_SIZE, SKILL_SIZE),
+			type);
+		Engine::CreateObject("Skill " + std::to_string(Engine::GetNextObjectID()), skill);
+	}
+
+	gameManager->AddScore(HARD_BLOCK_SCORE);
 }

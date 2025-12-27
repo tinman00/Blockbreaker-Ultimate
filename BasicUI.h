@@ -4,3 +4,6 @@
 #include "Button.h"
 #include "Text.h"
 #include "RunningStatsText.h"
+#include "LifeUI.h"
+#include "TextedButton.h"
+#include "PausePanel.h"

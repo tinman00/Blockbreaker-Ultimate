@@ -2,7 +2,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "SFML/system.hpp"
+#include "SFML/System.hpp"
+#include "SFML/Graphics.hpp"
 #include "Engine.h"
 #include "SceneManager.h"
 #include "Input.h"

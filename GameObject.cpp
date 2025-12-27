@@ -55,3 +55,8 @@ void GameObject::OnCollision(Collider* other)
 {
 
 }
+
+void GameObject::OnDestroy()
+{
+
+}

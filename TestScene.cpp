@@ -20,7 +20,7 @@ TestScene::TestScene()
 			}
 		));
 
-	auto txt = CreateObject("Text", new Text({400,250}, u8"人，过来", sf::Color(255, 127, 63), "Deng.ttf", 32));
+	auto txt = CreateObject("Text", new Text({400,250}, u8"人，过来", sf::Color(255, 127, 63), "Deng.ttf", 32, 1));
 	CreateObject(
 		"Button 2",
 		new Button(

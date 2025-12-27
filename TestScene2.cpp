@@ -22,5 +22,5 @@ TestScene2::TestScene2()
 				SceneManager::LoadScene(new TestScene3());
 			}
 		));
-	CreateObject("Text",new Text({ 750, 300 }, u8"这个给你", sf::Color(127, 127, 255), "Deng.ttf", 32));
+	CreateObject("Text",new Text({ 750, 300 }, u8"这个给你", sf::Color(127, 127, 255), "Deng.ttf", 32, 1));
 }
