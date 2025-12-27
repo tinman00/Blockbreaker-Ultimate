@@ -10,5 +10,6 @@ public:
 	void Start() override;
 	void OnCollision(Collider* other) override;
 	void Render() override;
+	void OnDestroy() override;
 };
 

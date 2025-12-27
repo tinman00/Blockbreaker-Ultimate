@@ -16,3 +16,16 @@ void FragileBlock::OnCollision(Collider* other)
 		Engine::Destroy(this);
 	}
 }
+
+void FragileBlock::Start()
+{
+	auto gameManager = Engine::GetObject<GameManager>("GameManager");
+	gameManager->targetCount++;
+}
+
+void FragileBlock::OnDestroy()
+{
+	auto gameManager = Engine::GetObject<GameManager>("GameManager");
+	gameManager->targetCount--;
+	gameManager->AddScore(FRAGILE_BLOCK_SCORE);
+}

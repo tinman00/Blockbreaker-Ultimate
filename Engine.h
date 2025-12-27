@@ -28,9 +28,12 @@ namespace Engine
 	extern float stashedUpdateTime;
 	extern float deltaTime;
 	extern float fixedDeltaTime;
+	extern int currentObjectID;
+	extern bool isPaused;
 
 	void resetViewport();
 	void Initialize();
+	void LazyUpdate();
 	void Update();
 	void UpdatePhysics();
 	void UpdateGameLogic();
@@ -39,6 +42,8 @@ namespace Engine
     void Destroy(GameObject* obj);
 	void Delete(GameObject* obj);
 	void ClearBin();
+	void TogglePause();
+	int GetNextObjectID();
 	int32_t GetTimeMillis();
 
 	GameObject* CreateObject(std::string name, GameObject* obj, GameObject* father = nullptr);

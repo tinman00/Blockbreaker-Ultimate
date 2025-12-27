@@ -10,7 +10,7 @@ public:
     int characterSize;
     sf::Font font;
     sf::Color color;
-    LifeUI(sf::Vector2u pos, int currentLives, sf::Color c,
+    LifeUI(sf::Vector2f pos, int currentLives, sf::Color c,
         sf::String fontPath, int cs, int layer);
     void UpdateCurrentLives(int currentLives);
     void Render() override;

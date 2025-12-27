@@ -14,7 +14,7 @@ public:
     std::int32_t lastRenderTime = 0;
     std::string logicFPS, renderFPS;
 
-    RunningStatsText(sf::Vector2u pos, sf::Color c, sf::String fontpath, int cs, int layer);
+    RunningStatsText(sf::Vector2f pos, sf::Color c, sf::String fontpath, int cs, int layer);
     void Start() override;
     void UpdateLogic() override;
     void Render() override;

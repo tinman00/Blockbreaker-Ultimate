@@ -7,7 +7,6 @@ class Ball :
     public GameObject
 {
 public:
-    static int id;
     float radius;
     sf::Vector2f boundX;
     bool isReleased;

@@ -5,11 +5,9 @@
 #include "BasicColliders.h"
 #include <cstdlib>
 
-int Ball::id = 0;
 
 Ball::Ball(sf::Vector2f pos, float radius, sf::Vector2f boundX)
 {
-	++id;
 	this->SetCollider(new CircleCollider(pos, radius));
 	this->collider->velocity = sf::Vector2f(0, 0);
 	this->collider->isFixed = true;
@@ -23,7 +21,7 @@ Ball::Ball(sf::Vector2f pos, float radius, sf::Vector2f boundX)
 void Ball::Start()
 {
 	gameManager = Engine::GetObject<GameManager>("GameManager");
-	gameManager->ballCount++;
+	gameManager->balls.insert(this);
 }
 
 void Ball::Render() {
@@ -66,5 +64,5 @@ void Ball::UpdateLogic()
 
 void Ball::OnDestroy()
 {
-	gameManager->ballCount--;
+	gameManager->balls.erase(this);
 }

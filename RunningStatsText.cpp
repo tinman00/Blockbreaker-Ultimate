@@ -1,6 +1,6 @@
 #include "RunningStatsText.h"
 
-RunningStatsText::RunningStatsText(sf::Vector2u pos, sf::Color c, sf::String fontpath, int cs, int layer) :
+RunningStatsText::RunningStatsText(sf::Vector2f pos, sf::Color c, sf::String fontpath, int cs, int layer) :
 	Text(pos, "", c, fontpath, cs, layer)
 {
 	

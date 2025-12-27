@@ -6,5 +6,7 @@ class FragileBlock :
 public:
 	FragileBlock(sf::Vector2f pos, sf::Vector2f siz, sf::Color color = sf::Color::White);
 	void OnCollision(Collider* other) override;
+	void Start() override;
+	void OnDestroy() override;
 };
 

@@ -1,12 +1,9 @@
 #include "Engine.h"
 #include "Base.h"
-#include "GameObject.h"
 #include "Camera.h"
-#include "SFML/Graphics.hpp"
-#include "UI.h"
-#include "TestScene.h"
-#include "Ball.h"
+#include "BasicUI.h"
 #include "GameTestScene.h"
+#include "BasicObjects.h"
 
 namespace Engine
 {
@@ -21,6 +18,8 @@ namespace Engine
     float stashedUpdateTime = 0.f;
     float deltaTime = 0.f;
     float fixedDeltaTime = FRAME_TIME;
+	int currentObjectID = 0;
+	bool isPaused = false;
 
     void resetViewport()
     {
@@ -39,7 +38,7 @@ namespace Engine
         SceneManager::LoadScene(dynamic_cast<Scene*>(new GameTestScene()));
     }
 
-    void LazyUpdate()
+    void LazyUpdate() // discarded
     {
         auto currentTime = gameClock.getElapsedTime().asSeconds();
         deltaTime = currentTime - lastUpdateTime;
@@ -61,9 +60,14 @@ namespace Engine
         deltaTime = currentTime - lastUpdateTime;
         fixedDeltaTime = deltaTime;
         lastUpdateTime = currentTime;
-        UpdatePhysics();
-        UpdateGameLogic();
-        ClearBin();
+        if (isPaused) {
+            fixedDeltaTime = 0.f;
+		}
+        else {
+            UpdatePhysics();
+            UpdateGameLogic();
+            ClearBin();
+        }
         Render();
     }
 
@@ -86,7 +90,8 @@ namespace Engine
             if (coll1->isFixed) continue;
             for (auto& [key2, obj2] : objects) {
                 if (!obj2->GetActive() || obj1 == obj2) continue;
-                if (dynamic_cast<Ball*>(obj1) && dynamic_cast<Ball*> (obj2)) continue;
+                //if (dynamic_cast<Ball*>(obj1) && dynamic_cast<Ball*> (obj2)) continue;
+                if (dynamic_cast<Ball*>(obj1) && dynamic_cast<Skill*> (obj2)) continue;
                 if (!obj2->collider) continue;
                 auto& coll2 = obj2->collider;
                 coll1->CollideWith(coll2);
@@ -159,22 +164,23 @@ namespace Engine
                 if (const auto mouse = event->getIf<sf::Event::MouseButtonPressed>())
                 {
                     if (mouse->button == sf::Mouse::Button::Left) {
-                        std::vector<UI*> uis;
+                        std::vector<Button*> buttons;
                         int topLayer = INT32_MIN;
                         for (auto &[key, obj] : objects)
                         {
-                            UI* ui = dynamic_cast<UI*>(obj);
-                            if (ui && ui->GetActive() && ui->Enclose(mouse->position.x, mouse->position.y))
+                            if (Button* button = dynamic_cast<Button*>(obj))
                             {
-                                uis.push_back(ui);
-                                topLayer = ui->layer > topLayer ? ui->layer : topLayer;
+								if (!button->GetActive()) continue;
+                                if (!button->Enclose(mouse->position.x, mouse->position.y)) continue;
+                                buttons.push_back(button);
+                                topLayer = button->layer > topLayer ? button->layer : topLayer;
                             }
                         }
-                        for (auto ui : uis)
+                        for (auto button : buttons)
                         {
-                            if (ui->layer == topLayer)
+                            if (button->layer == topLayer)
                             {
-                                ui->OnClick();
+                                button->OnClick();
                             }
                         }
                     }
@@ -214,6 +220,16 @@ namespace Engine
 		toDelete.clear();
 	}
 
+    void TogglePause()
+    {
+		isPaused = !isPaused;
+    }
+
+    int GetNextObjectID()
+    {
+        return ++currentObjectID;
+    }
+
     int32_t GetTimeMillis()
     {
 		return gameClock.getElapsedTime().asMilliseconds();
@@ -233,6 +249,7 @@ namespace Engine
             std::cerr << "Error: GameObject with name \"" << name << "\" has already been created" << std::endl;
             delete obj;
             obj = nullptr;
+            return obj;
         }
         if (auto ui = dynamic_cast<UI*>(obj)) {
             uis.push_back(ui);

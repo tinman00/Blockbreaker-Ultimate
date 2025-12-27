@@ -33,6 +33,9 @@
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="LifeUI.cpp" />
+    <ClCompile Include="TextedButton.cpp" />
+    <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="PausePanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -70,5 +73,8 @@
     <ClInclude Include="HardBlock.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="LifeUI.h" />
+    <ClInclude Include="TextedButton.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="PausePanel.h" />
   </ItemGroup>
 </Project>

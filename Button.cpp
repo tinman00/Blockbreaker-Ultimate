@@ -3,21 +3,15 @@
 #include "BoxCollider.h"
 #include <iostream>
 
-Button::Button(sf::Vector2u pos, sf::Vector2u siz, int _layer, std::function<void()> onClick)
+Button::Button(sf::Vector2f pos, sf::Vector2f siz, int _layer, std::function<void()> onClick)
+	: UI(pos, siz, _layer)
 {
-	layer = _layer;
-	width = siz.x;
-	height = siz.y;
-	left = pos.x;
-	right = left + siz.x;
-	bottom = pos.y;
-	top = bottom + siz.y;
-	collider = new BoxCollider({ 1.f * left, 1.f * bottom }, {1.f * width, 1.f * height});
+	// collider = new BoxCollider({ 1.f * left, 1.f * bottom }, {1.f * width, 1.f * height});
 	OnClick = onClick;
 }
 
 void Button::Render() {
-	sf::RectangleShape shape(sf::Vector2f(width, height));
-	shape.setPosition(sf::Vector2f(left, bottom));
+	sf::RectangleShape shape(size);
+	shape.setPosition(position);
 	Engine::window->draw(shape);
 }

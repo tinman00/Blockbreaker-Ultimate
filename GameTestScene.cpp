@@ -31,27 +31,40 @@ GameTestScene::GameTestScene()
 	CreateObject("Forbbiden Zone",
 		new ForbbidenZone({ 0, verticalBoundHeight }, { levelWidth, BOUNDARY_THICKNESS }));
 
-	sf::Vector2u uiPositionInit(static_cast<unsigned>(levelWidth) + UI_OFFSET_X, 0);
+	sf::Vector2f uiPositionInit(static_cast<unsigned>(levelWidth) + UI_OFFSET_X, 0);
 
-	auto pauseButton = CreateObject("PauseButton",
-		new Button(uiPositionInit + sf::Vector2u(0, UI_OFFSET_X), { static_cast<unsigned>(LEVEL_INFO_WIDTH - UI_OFFSET_X * 2), 100 }, 1));
+	sf::Color uiColor = sf::Color(251, 124, 34);
+	auto pauseButton = dynamic_cast<TextedButton*>(CreateObject("PauseButton",
+		new TextedButton(uiPositionInit + sf::Vector2f(0, UI_OFFSET_X),
+			{ static_cast<unsigned>(LEVEL_INFO_WIDTH - UI_OFFSET_X * 2), 100 }, 5,
+			[]() {
+				std::cout << "Pause button clicked." << std::endl;
+				Engine::GetObject<PausePanel>("PausePanel")->ToggleVisibility();
+				Engine::TogglePause();
+			})));
+	pauseButton->SetText("PAUSE", sf::Color::Black, "LLPixelFun.ttf", 42);
+	auto pausePanel = dynamic_cast<PausePanel*>(CreateObject("PausePanel",
+		new PausePanel({0, 0}, {levelWidth, levelWidth}, 3)));
+	pausePanel->isActive = false;
+
 	auto scoreText = CreateObject("ScoreText",
-		new Text(uiPositionInit + sf::Vector2u(0, static_cast<unsigned>(UI_OFFSET_X * 2 + 100)),
-			"SCORE", sf::Color(191, 127, 0), "LLPixelFun.ttf", 64, 1));
+		new Text(uiPositionInit + sf::Vector2f(0, static_cast<unsigned>(UI_OFFSET_X * 2 + 100)),
+			"SCORE", uiColor, "LLPixelFun.ttf", 64, 1));
 	auto levelText = CreateObject("LevelText",
-		new Text(uiPositionInit + sf::Vector2u(0, levelHeight - 240),
-			"LEVEL\n00000",	sf::Color(211, 160, 0), "LLPixelFun.ttf", 64, 1));
+		new Text(uiPositionInit + sf::Vector2f(0, levelHeight - 240),
+			"LEVEL\n00000", uiColor, "LLPixelFun.ttf", 64, 1));
 	auto lifeUI = CreateObject("LifeUI",
-		new LifeUI(uiPositionInit + sf::Vector2u(0, levelHeight / 2 - 160),
-			currentLives, sf::Color(211, 160, 0), "LLPixelFun.ttf", 64, 1));
+		new LifeUI(uiPositionInit + sf::Vector2f(0, levelHeight / 2 - 80),
+			currentLives, uiColor, "LLPixelFun.ttf", 64, 1));
 
 	auto gameManager = CreateObject("GameManager",
-		new GameManager(dynamic_cast<Racket*>(racket), dynamic_cast<LifeUI*>(lifeUI), dynamic_cast<Text*>(scoreText), dynamic_cast<Text*>(levelText), currentLives));
+		new GameManager(dynamic_cast<Racket*>(racket), dynamic_cast<LifeUI*>(lifeUI),
+			dynamic_cast<Text*>(scoreText), dynamic_cast<Text*>(levelText), currentLives));
 
 	std::vector<Ball*> list;
 	for (int i = 0; i < 4; i++) {
 		auto ballGO = CreateObject(
-			std::string("Ball ") + std::to_string(i),
+			std::string("Ball-") + std::to_string(i),
 			new Ball({ static_cast<float>(rand() % (static_cast<int>(levelWidth - 2 * BALL_RADIUS)) + BOUNDARY_THICKNESS + BALL_RADIUS),
 				static_cast<float>(rand() % (static_cast<int>(mapHeight * BLOCK_HEIGHT)) + BOUNDARY_THICKNESS + BALL_RADIUS) },
 				BALL_RADIUS, { BOUNDARY_THICKNESS, levelWidth - BOUNDARY_THICKNESS })
@@ -63,27 +76,44 @@ GameTestScene::GameTestScene()
 	// Create blocks
 	for (int i = 0; i < mapWidth; i++) {
 		for (int j = 0; j < mapHeight - 1; j++) {
-			if (rand() % 2)
+			if (i == mapWidth / 2 || i == mapWidth / 2 - 1) continue;
+			if (rand() % 10 < 5)
 			{
-				CreateObject(
-					std::string("Block ") + std::to_string(i) + "-" + std::to_string(j),
-					new FragileBlock(
-						{ BOUNDARY_THICKNESS + i * BLOCK_WIDTH,
-						BOUNDARY_THICKNESS + (j + 2) * BLOCK_HEIGHT },
-						{ BLOCK_WIDTH,  BLOCK_HEIGHT })
-				);
+				if (rand() % 10 < 5)
+				{
+					CreateObject(
+						std::string("Block ") + std::to_string(i) + "-" + std::to_string(j),
+						new FragileBlock(
+							{ BOUNDARY_THICKNESS + i * BLOCK_WIDTH,
+							BOUNDARY_THICKNESS + (j + 2) * BLOCK_HEIGHT },
+							{ BLOCK_WIDTH,  BLOCK_HEIGHT })
+					);
+				}
 			}
 			else
 			{
-				CreateObject(
-					std::string("Block ") + std::to_string(i) + "-" + std::to_string(j),
-					new HardBlock(
-						{ BOUNDARY_THICKNESS + i * BLOCK_WIDTH,
-						BOUNDARY_THICKNESS + (j + 2) * BLOCK_HEIGHT },
-						{ BLOCK_WIDTH,  BLOCK_HEIGHT }, 3, sf::Color(191, 191, 191))
-				);
+				if (rand() % 10 < 5)
+				{
+					CreateObject(
+						std::string("Block ") + std::to_string(i) + "-" + std::to_string(j),
+						new HardBlock(
+							{ BOUNDARY_THICKNESS + i * BLOCK_WIDTH,
+							BOUNDARY_THICKNESS + (j + 2) * BLOCK_HEIGHT },
+							{ BLOCK_WIDTH,  BLOCK_HEIGHT }, 3, sf::Color(191, 191, 191))
+					);
+				}
 			}
 		}
+	}
+	for (int i = 0; i < mapWidth; i++) {
+		if (i == mapWidth / 2 || i == mapWidth / 2 - 1) continue;
+		CreateObject(
+			std::string("Block ") + std::to_string(i) + "-" + std::to_string(mapHeight - 1),
+			new UnbreakableBlock(
+				{ BOUNDARY_THICKNESS + i * BLOCK_WIDTH,
+				BOUNDARY_THICKNESS + (mapHeight + 1) * BLOCK_HEIGHT },
+				{ BLOCK_WIDTH,  BLOCK_HEIGHT }, sf::Color(95, 95, 95))
+		);
 	}
 	//CreateObject("AirBarrier 5", new AirBarrier({ 450, 450 }, { 100, 100 }, true));
 	//auto ball1 = GetObject<Ball>("Ball 1");

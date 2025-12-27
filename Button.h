@@ -8,7 +8,7 @@ class Button :
     public UI
 {
 public:
-    Button(sf::Vector2u pos, sf::Vector2u siz, int _layer, std::function<void()> onClick = [](){});
-    void Render();
+    Button(sf::Vector2f pos, sf::Vector2f siz, int _layer, std::function<void()> onClick = [](){});
+    void Render() override;
 };
 
