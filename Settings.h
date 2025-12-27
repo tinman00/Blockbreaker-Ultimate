@@ -12,6 +12,7 @@ const float BLOCK_WIDTH = 70.f;
 const float BLOCK_HEIGHT = 35.f;
 const float HIDE_FORBBIDEN_ZONE_HEIGHT = 200.f;
 const float LEVEL_INFO_WIDTH = 300.f;
+const float UI_OFFSET_X = 40.f;
 const int INITIAL_LIVES = 3;
 
 void InitializeSettings();

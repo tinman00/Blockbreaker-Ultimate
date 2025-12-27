@@ -31,6 +31,8 @@
     <ClCompile Include="FragileBlock.cpp" />
     <ClCompile Include="HardBlock.cpp" />
     <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="LifeUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -66,5 +68,7 @@
     <ClInclude Include="ForbbidenZone.h" />
     <ClInclude Include="FragileBlock.h" />
     <ClInclude Include="HardBlock.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="LifeUI.h" />
   </ItemGroup>
 </Project>

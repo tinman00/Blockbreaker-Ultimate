@@ -6,14 +6,15 @@
 
 GameTestScene::GameTestScene()
 {
-	int mapWidth = 11;
-	int mapHeight = 20;
+	int mapWidth = 20;
+	int mapHeight = 8;
 	float levelWidth = BOUNDARY_THICKNESS * 2 + mapWidth * BLOCK_WIDTH;
-	float levelHeight = BOUNDARY_THICKNESS * 2 + (mapHeight + 10) * BLOCK_HEIGHT;
+	float levelHeight = BOUNDARY_THICKNESS * 2 + (mapHeight + 10 + mapWidth * 0.4f) * BLOCK_HEIGHT;
 	windowHeight = levelHeight;
 	windowWidth = levelWidth + LEVEL_INFO_WIDTH;
+	sf::Vector2u windowSize(windowWidth, windowHeight);
 
-	CreateObject("Racket", new Racket({ levelWidth / 2 - RACKET_WIDTH / 2, windowHeight - RACKET_Y_POS_TO_BOTTOM - RACKET_HEIGHT / 2}, 
+	auto racket = CreateObject("Racket", new Racket({ levelWidth / 2 - RACKET_WIDTH / 2, windowHeight - RACKET_Y_POS_TO_BOTTOM - RACKET_HEIGHT / 2}, 
 		{RACKET_WIDTH, RACKET_HEIGHT}, {BOUNDARY_THICKNESS, levelWidth - BOUNDARY_THICKNESS},
 		RACKET_SPEED
 	));
@@ -27,6 +28,16 @@ GameTestScene::GameTestScene()
 		new AirBarrier({ 0, 0 }, { levelWidth, BOUNDARY_THICKNESS }, true));
 	CreateObject("Forbbiden Zone", 
 		new ForbbidenZone({ 0, verticalBoundHeight }, { levelWidth, BOUNDARY_THICKNESS }));
+
+	sf::Vector2u uiPositionInit(static_cast<unsigned>(levelWidth) + UI_OFFSET_X, 0);
+
+	auto pauseButton = CreateObject("PauseButton",
+		new Button(uiPositionInit + sf::Vector2u(0, UI_OFFSET_X), {static_cast<unsigned>(LEVEL_INFO_WIDTH - UI_OFFSET_X * 2), 100}, 1));
+	auto scoreText = CreateObject("ScoreText",
+		new Text(uiPositionInit + sf::Vector2u(0, static_cast<unsigned>(UI_OFFSET_X * 2 + 100)), "SCORE", sf::Color(191, 127, 0), "LLPixelFun.ttf", 60));
+	auto levelText = CreateObject("LevelText",
+		new Text(uiPositionInit + sf::Vector2u(0, levelHeight - 240), "LEVEL\n00000", sf::Color(211, 160, 0), "LLPixelFun.ttf", 60));
+	auto lifeUI = CreateObject("LifeUI", new LifeUI());
 
 	std::vector<Ball*> list;
 	for (int i = 0; i < 4; i++) {
