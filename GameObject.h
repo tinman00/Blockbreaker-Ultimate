@@ -30,6 +30,7 @@ public:
 	virtual void UpdateLogic();
 	virtual void Render();
 	virtual void OnCollision(Collider *other);
+	virtual void OnDestroy();
 	virtual ~GameObject() = default;
 };
 

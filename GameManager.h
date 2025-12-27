@@ -9,12 +9,14 @@ class GameManager :
 public:
 	Racket* racket;
     int targetCount;
+	int ballCount;
 	int currentLives;
 	int score;
 	Text* scoreText;
 	Text* levelText;
 	LifeUI* lifeUI;
-	GameManager(Racket* racket, LifeUI* lifeUI, Text* scoreText, Text* levelText, int currentLives);
+	GameManager(Racket* racket, LifeUI* lifeUI, Text* scoreText,
+		Text* levelText, int currentLives);
 	void UpdateLogic() override;
 };
 

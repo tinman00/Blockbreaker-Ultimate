@@ -6,8 +6,10 @@
 
 GameTestScene::GameTestScene()
 {
+	srand(0);
 	int mapWidth = 20;
 	int mapHeight = 8;
+	int currentLives = 3;
 	float levelWidth = BOUNDARY_THICKNESS * 2 + mapWidth * BLOCK_WIDTH;
 	float levelHeight = BOUNDARY_THICKNESS * 2 + (mapHeight + 10 + mapWidth * 0.4f) * BLOCK_HEIGHT;
 	windowHeight = levelHeight;
@@ -26,18 +28,21 @@ GameTestScene::GameTestScene()
 		new AirBarrier({ levelWidth - BOUNDARY_THICKNESS, 0 }, { BOUNDARY_THICKNESS, verticalBoundHeight }, true));
 	CreateObject("AirBarrier 3",
 		new AirBarrier({ 0, 0 }, { levelWidth, BOUNDARY_THICKNESS }, true));
-	CreateObject("Forbbiden Zone", 
+	CreateObject("Forbbiden Zone",
 		new ForbbidenZone({ 0, verticalBoundHeight }, { levelWidth, BOUNDARY_THICKNESS }));
 
 	sf::Vector2u uiPositionInit(static_cast<unsigned>(levelWidth) + UI_OFFSET_X, 0);
 
 	auto pauseButton = CreateObject("PauseButton",
-		new Button(uiPositionInit + sf::Vector2u(0, UI_OFFSET_X), {static_cast<unsigned>(LEVEL_INFO_WIDTH - UI_OFFSET_X * 2), 100}, 1));
+		new Button(uiPositionInit + sf::Vector2u(0, UI_OFFSET_X), { static_cast<unsigned>(LEVEL_INFO_WIDTH - UI_OFFSET_X * 2), 100 }, 1));
 	auto scoreText = CreateObject("ScoreText",
-		new Text(uiPositionInit + sf::Vector2u(0, static_cast<unsigned>(UI_OFFSET_X * 2 + 100)), "SCORE", sf::Color(191, 127, 0), "LLPixelFun.ttf", 60));
+		new Text(uiPositionInit + sf::Vector2u(0, static_cast<unsigned>(UI_OFFSET_X * 2 + 100)), "SCORE", sf::Color(191, 127, 0), "LLPixelFun.ttf", 64));
 	auto levelText = CreateObject("LevelText",
-		new Text(uiPositionInit + sf::Vector2u(0, levelHeight - 240), "LEVEL\n00000", sf::Color(211, 160, 0), "LLPixelFun.ttf", 60));
+		new Text(uiPositionInit + sf::Vector2u(0, levelHeight - 240), "LEVEL\n00000", sf::Color(211, 160, 0), "LLPixelFun.ttf", 64));
 	auto lifeUI = CreateObject("LifeUI", new LifeUI());
+
+	auto gameManager = CreateObject("GameManager",
+		new GameManager(dynamic_cast<Racket*>(racket), dynamic_cast<LifeUI*>(lifeUI), dynamic_cast<Text*>(scoreText), dynamic_cast<Text*>(levelText), currentLives));
 
 	std::vector<Ball*> list;
 	for (int i = 0; i < 4; i++) {

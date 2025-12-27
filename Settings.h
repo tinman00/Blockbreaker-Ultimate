@@ -8,6 +8,7 @@ const int RACKET_HEIGHT = 30;
 const float RACKET_SPEED = 1000.f;
 const float BALL_RADIUS = 14.f;
 const float BALL_SPEED = 600.f;
+const float BALL_HANG_HEIGHT = 40.f;
 const float BLOCK_WIDTH = 70.f;
 const float BLOCK_HEIGHT = 35.f;
 const float HIDE_FORBBIDEN_ZONE_HEIGHT = 200.f;

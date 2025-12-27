@@ -153,6 +153,7 @@ namespace Engine
 
     void Destroy(GameObject* obj)
     {
+        obj->OnDestroy();
 		toDelete.push_back(obj);
 		obj->SetActive(false);
     }
@@ -194,6 +195,7 @@ namespace Engine
             delete obj;
             obj = nullptr;
         }
+        obj->Start();
         return obj;
     }
 
