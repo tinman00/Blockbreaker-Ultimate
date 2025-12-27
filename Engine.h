@@ -3,9 +3,11 @@
 #include <unordered_map>
 #include <string>
 #include <iostream>
+#include <list>
 #include "SFML/Graphics.hpp"
 
 class GameObject;
+class UI;
 class Camera;
 
 namespace Engine
@@ -16,11 +18,16 @@ namespace Engine
 	extern sf::RenderWindow *window;
 
 	extern std::unordered_map<std::string, GameObject*> objects;
+	extern std::vector<UI*> uis;
 	extern std::vector<Camera*> cameras;
 
 	extern std::vector<GameObject*> toDelete;
 
 	extern sf::Clock gameClock;
+	extern float lastUpdateTime;
+	extern float stashedUpdateTime;
+	extern float deltaTime;
+	extern float fixedDeltaTime;
 
 	void resetViewport();
 	void Initialize();

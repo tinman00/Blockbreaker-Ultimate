@@ -1,5 +1,6 @@
 #include "SceneManager.h"
-#include "Engine.h"
+#include "Base.h"
+#include "UI.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -33,8 +34,14 @@ namespace SceneManager
 				scene->objects.erase(key);
 			}
 		}
+		auto& uis = Engine::uis;
+		uis.erase(std::remove_if(uis.begin(), uis.end(), [](UI* ui) {return !ui->dontDestroyOnLoad; }), uis.end());
 		for (auto& [key, obj] : scene->objects) {
 			obj->Start();
+			if (auto ui = dynamic_cast<UI*>(obj)) {
+				uis.push_back(ui);
+			}
 		}
+		std::sort(uis.begin(), uis.end(), [](UI* ui1, UI* ui2) { return ui1->layer < ui2->layer; });
 	}
 }

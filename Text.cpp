@@ -3,18 +3,12 @@
 #include <cstring>
 #include <cstdio>
 
-Text::Text(sf::Vector2u pos, const char* s, sf::Color c, sf::String fontpath, int cs)
+Text::Text(sf::Vector2u pos, const char* s, sf::Color c, sf::String fontpath, int cs, int layer)
+	: UI(pos, { static_cast<unsigned>(str.getSize() * cs), static_cast<unsigned>(cs) }, layer)
 {
 	str = sf::String::fromUtf8(s, s + strlen(s));
 	sf::Vector2u siz = sf::Vector2u(str.getSize() * cs, cs);
 
-	thisid = ++id;
-	width = siz.x;
-	height = siz.y;
-	left = pos.x;
-	right = left + siz.x;
-	bottom = pos.y;
-	top = bottom + siz.y;
 	color = c;
 	characterSize = cs;
 	if (!font.openFromFile(std::filesystem::path(fontpath))) {

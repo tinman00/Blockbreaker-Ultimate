@@ -31,7 +31,6 @@ public:
 
     void CollideWith(Collider* other);
 
-    void MoveBabyStep();
-	void MoveFullStep();
+    void MoveStep();
 };
 

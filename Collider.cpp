@@ -1,5 +1,5 @@
 #include "Collider.h"
-#include "Settings.h"
+#include "Base.h"
 #include <iostream>
 
 bool Collider::IsCollideWith(const Collider* other) const
@@ -31,18 +31,12 @@ sf::Vector2f Collider::CollideDirection(const CircleCollider* other) const
     return { 0, 0 };
 }
 
-void Collider::MoveBabyStep()
+void Collider::MoveStep()
 {
     if (!isFixed)
     {
-        position += (1.f / FRAMES_PER_SEC) * velocity;
+        position += Engine::fixedDeltaTime * velocity;
     }
-}
-
-void Collider::MoveFullStep()
-{
-	if (!isFixed)
-        position += velocity;
 }
 
 void Collider::CollideWith(Collider* other)

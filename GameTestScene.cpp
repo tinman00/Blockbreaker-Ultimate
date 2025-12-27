@@ -8,7 +8,7 @@ GameTestScene::GameTestScene()
 {
 	srand(0);
 	int mapWidth = 20;
-	int mapHeight = 8;
+	int mapHeight = 20;
 	int currentLives = 3;
 	float levelWidth = BOUNDARY_THICKNESS * 2 + mapWidth * BLOCK_WIDTH;
 	float levelHeight = BOUNDARY_THICKNESS * 2 + (mapHeight + 10 + mapWidth * 0.4f) * BLOCK_HEIGHT;
@@ -36,10 +36,14 @@ GameTestScene::GameTestScene()
 	auto pauseButton = CreateObject("PauseButton",
 		new Button(uiPositionInit + sf::Vector2u(0, UI_OFFSET_X), { static_cast<unsigned>(LEVEL_INFO_WIDTH - UI_OFFSET_X * 2), 100 }, 1));
 	auto scoreText = CreateObject("ScoreText",
-		new Text(uiPositionInit + sf::Vector2u(0, static_cast<unsigned>(UI_OFFSET_X * 2 + 100)), "SCORE", sf::Color(191, 127, 0), "LLPixelFun.ttf", 64));
+		new Text(uiPositionInit + sf::Vector2u(0, static_cast<unsigned>(UI_OFFSET_X * 2 + 100)),
+			"SCORE", sf::Color(191, 127, 0), "LLPixelFun.ttf", 64, 1));
 	auto levelText = CreateObject("LevelText",
-		new Text(uiPositionInit + sf::Vector2u(0, levelHeight - 240), "LEVEL\n00000", sf::Color(211, 160, 0), "LLPixelFun.ttf", 64));
-	auto lifeUI = CreateObject("LifeUI", new LifeUI());
+		new Text(uiPositionInit + sf::Vector2u(0, levelHeight - 240),
+			"LEVEL\n00000",	sf::Color(211, 160, 0), "LLPixelFun.ttf", 64, 1));
+	auto lifeUI = CreateObject("LifeUI",
+		new LifeUI(uiPositionInit + sf::Vector2u(0, levelHeight / 2 - 160),
+			currentLives, sf::Color(211, 160, 0), "LLPixelFun.ttf", 64, 1));
 
 	auto gameManager = CreateObject("GameManager",
 		new GameManager(dynamic_cast<Racket*>(racket), dynamic_cast<LifeUI*>(lifeUI), dynamic_cast<Text*>(scoreText), dynamic_cast<Text*>(levelText), currentLives));
@@ -86,5 +90,5 @@ GameTestScene::GameTestScene()
 	//ball1->collider->velocity = { 100, 50 };
 	//auto ball2 = GetObject<Ball>("Ball 2");
 	//ball2->collider->velocity = { 30, -50 };
-	CreateObject("FrameRateText", new RunningStatsText({ 24, 24 }, sf::Color::Green, "Deng.ttf", 24));
+	CreateObject("FrameRateText", new RunningStatsText({ 24, 24 }, sf::Color::Green, "Deng.ttf", 24, 1));
 }

@@ -1,6 +1,7 @@
 #pragma once
 
-const int FRAMES_PER_SEC = 160;
+const int FRAMES_PER_SEC = 240;
+const float FRAME_TIME = 1.f / FRAMES_PER_SEC;
 const int BOUNDARY_THICKNESS = 20;
 const int RACKET_Y_POS_TO_BOTTOM = 120;
 const int RACKET_WIDTH = 150;

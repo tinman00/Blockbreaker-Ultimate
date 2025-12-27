@@ -10,8 +10,17 @@
 
 namespace Engine
 {
+
+    sf::RenderWindow* window;
+    std::unordered_map<std::string, GameObject*> objects;
+    std::vector<UI*> uis;
+    std::vector<Camera*> cameras;
 	std::vector<GameObject*> toDelete = {};
 	sf::Clock gameClock;
+    float lastUpdateTime = 0.f;
+    float stashedUpdateTime = 0.f;
+    float deltaTime = 0.f;
+    float fixedDeltaTime = FRAME_TIME;
 
     void resetViewport()
     {
@@ -30,12 +39,32 @@ namespace Engine
         SceneManager::LoadScene(dynamic_cast<Scene*>(new GameTestScene()));
     }
 
+    void LazyUpdate()
+    {
+        auto currentTime = gameClock.getElapsedTime().asSeconds();
+        deltaTime = currentTime - lastUpdateTime;
+        lastUpdateTime = currentTime;
+        stashedUpdateTime += deltaTime;
+        bool updated = stashedUpdateTime > FRAME_TIME;
+        while (stashedUpdateTime > FRAME_TIME) {
+            stashedUpdateTime -= FRAME_TIME;
+            UpdatePhysics();
+            UpdateGameLogic();
+            ClearBin();
+        }
+        if (updated) Render();
+    }
+
     void Update()
     {
+        auto currentTime = gameClock.getElapsedTime().asSeconds();
+        deltaTime = currentTime - lastUpdateTime;
+        fixedDeltaTime = deltaTime;
+        lastUpdateTime = currentTime;
         UpdatePhysics();
         UpdateGameLogic();
-        Render();
         ClearBin();
+        Render();
     }
 
     void UpdatePhysics()
@@ -48,7 +77,7 @@ namespace Engine
                 //<< ".velocity: (" << obj->collider->velocity.x << ", " << obj->collider->velocity.y << ")" << std::endl;
             //std::cout << "Object: \"" << obj->name << "\""
                 //<< ".isActive: " << (obj->isActive ? "True" : "False") << std::endl;
-			obj->collider->MoveBabyStep();
+			obj->collider->MoveStep();
 		}
         for (auto& [key1, obj1] : objects) {
             if (!obj1->GetActive()) continue;
@@ -94,17 +123,24 @@ namespace Engine
 
     void Render()
     {
+        window->clear();
+        std::vector<UI*> ui;
         for (auto &[key, obj] : objects) {
             if (!obj->GetActive()) continue;
             obj->Render();
         }
+
+        for (auto& obj : uis) {
+            if (!obj->GetActive()) continue;
+            obj->Render();
+        }
+        window->display();
     }
 
     void Run()
     {
         while (window->isOpen())
         {
-            window->clear();
             static bool isFocused = true;
             while (const std::optional<sf::Event> event = window->pollEvent())
             {
@@ -147,7 +183,6 @@ namespace Engine
             if (isFocused) Update();
 
             //std::cout << "Display." << std::endl;
-            window->display();
         }
     }
 
@@ -164,6 +199,10 @@ namespace Engine
             Destroy(child);
         }
         objects.erase(obj->name);
+        if (auto ui = dynamic_cast<UI*>(obj)) {
+            uis.erase(std::remove(uis.begin(), uis.end(), ui), uis.end());
+            std::sort(uis.begin(), uis.end(), [](UI* ui1, UI* ui2) { return ui1->layer < ui2->layer; });
+        }
         delete obj;
     }
 
@@ -195,12 +234,11 @@ namespace Engine
             delete obj;
             obj = nullptr;
         }
+        if (auto ui = dynamic_cast<UI*>(obj)) {
+            uis.push_back(ui);
+            std::sort(uis.begin(), uis.end(), [](UI* ui1, UI* ui2) { return ui1->layer < ui2->layer; });
+        }
         obj->Start();
         return obj;
     }
-
-    sf::RenderWindow* window;
-
-    std::unordered_map<std::string, GameObject*> objects;
-    std::vector<Camera*> cameras;
 }
